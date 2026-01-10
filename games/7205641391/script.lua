@@ -87,7 +87,7 @@ WindUI:AddTheme({
 })
 
 local window = WindUI:CreateWindow({
-	Title  = "Vesta's Autoplayer (2026, Status: " .. status_icon .. ")",
+	Title  = "Vastal Autoplayer (2026, Status: " .. status_icon .. ")",
 	Icon   = "star",
     Theme  = 'Vast',
 	Author = "Created by Vesta (Julius), working for all executors",
@@ -97,7 +97,7 @@ local window = WindUI:CreateWindow({
 })
 
 window:Tag({
-    Title = "v1.0.0",
+    Title = "WIP",
     Color = Color3.fromHex("#4278ff"),
     Radius = 13,
 })
