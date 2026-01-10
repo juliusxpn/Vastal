@@ -18,7 +18,7 @@ pcall(function()
     makefolder('vastal/mmm/cache')
 end)
 
-local clone = (cloneref or clonereference or function(obj) return obj end)
+local clone = cloneref or function(obj) return obj end -- clonereference isnt used anymore why did i do this?
 local rs = clone(game:GetService("RunService"))
 local vim = clone(game:GetService("VirtualInputManager"))
 local players = clone(game:GetService("Players"))
