@@ -175,8 +175,8 @@ WindUI:AddTheme({
 })
 
 local window = WindUI:CreateWindow({
-	Title  = "Vastal Autoplayer (2026, Status: " .. status_icon .. ")",
-	Icon   = "star",
+	Title  = "Wheelchair Exploit (2026, Status: " .. status_icon .. ")",
+	Icon   = "accessibility",
     Theme  = 'Vast',
 	Author = "Created by Vesta (Julius), working for all executors",
 	Folder = "VestaAutoPlayer",
