@@ -1,8 +1,3 @@
-if game.PlaceId ~= 7205641391 then
-	loadstring(game:HttpGet('https://github.com/juliusxpn/Vastal/raw/refs/heads/main/main.lua', true))()
-	return
-end
-
 for _, v in ipairs(game.CoreGui:GetDescendants()) do
 	if v.Name:find("WindUI") then
 		v:Destroy()
@@ -121,7 +116,7 @@ sound.SoundId = getcustomasset("vastal/startup.mp3")
 sound:Play()
 
 local WindUI = loadstring(game:HttpGet(
-	"https://github.com/Footagesus/WindUI/releases/download/1.6.63/main.lua"
+	"https://github.com/juliusxpn/Vastal/raw/refs/heads/main/UI/WindUI.lua"
 ))()
 
 local status_link = "https://github.com/juliusxpn/Vastal/raw/refs/heads/main/games/" .. game.PlaceId .. "/status.txt"
@@ -393,7 +388,7 @@ refresh_config_list()
 
 if status_icon == "🔴" then
     local Dialog = window:Dialog({
-        Icon = "warning-shield",
+        Icon = "circle-alert",
         Title = "Vesta's Autoplayer isn't updated yet!",
         Content = "Are you sure that you want to run? The script will most definitely not work.",
         Buttons = {
