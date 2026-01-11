@@ -1097,7 +1097,7 @@ game.DescendantAdded:Connect(function(o) wait(0.01) setup(o) end)
 
 local troll_config = {
 	prefix = "!",
-	test_mode = true,
+	test_mode = false,
 	
 	whitelisted = {
 		[10318336432] = {
