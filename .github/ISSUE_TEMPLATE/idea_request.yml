@@ -1,0 +1,19 @@
+name: Idea Request
+description: Suggest something that Vastal should have! (Put in the type of available game with your idea beside it)
+title: "[Idea]: "
+labels: ["idea"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What should be added?
+      description: Describe your suggestion!
+      placeholder: "I want robux..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Extra notes (optional)
+      placeholder: "What else to add?"
