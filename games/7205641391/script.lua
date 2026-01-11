@@ -170,13 +170,13 @@ WindUI:AddTheme({
 })
 
 local window = WindUI:CreateWindow({
-	Title  = "Wheelchair Exploit (2026, Status: " .. status_icon .. ")",
-	Icon   = "accessibility",
+	Title  = "Vastal Gaming (2026, Status: " .. status_icon .. ")",
+	Icon   = "bean",
     Theme  = 'Vast',
 	Author = "Created by Vesta (Julius), working for all executors",
 	Folder = "VestaAutoPlayer",
 	Size   = UDim2.fromOffset(600, 333),
-    Radius = 9
+    Radius = 6
 })
 
 window:Tag({
