@@ -2,18 +2,7 @@
 For MMM, and universal.
 
 Load the provided script below!
+
 ```lua
-local base = "https://raw.githubusercontent.com/juliusxpn/Vastal/main/games/"
-local url  = base .. game.PlaceId .. "/script.lua"
-
-local success, result = pcall(function()
-    return game:HttpGet(url, true)
-end)
-
-if success and result then
-    loadstring(result)()
-else
-    loadstring(game:HttpGet(base .. "universal.lua", true))()
-end
+loadstring(game:HttpGet('https://github.com/juliusxpn/Vastal/raw/refs/heads/main/main.lua', true))()
 ```
-*sorry its like 2:19 AM (no really) and im just really tired.
