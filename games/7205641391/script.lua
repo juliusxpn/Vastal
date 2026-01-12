@@ -197,9 +197,9 @@ local window = WindUI:CreateWindow({
 })
 
 window:Tag({
-    Title = "Vastal Lite",
+    Title = "Lite",
     Color = Color3.fromHex("#a9cce9"),
-    Radius = 3,
+    Radius = 6,
 })
 
 local mainTab = window:Tab({ Title = "Utility", Icon = "pickaxe" })
