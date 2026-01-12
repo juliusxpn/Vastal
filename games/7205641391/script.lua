@@ -564,7 +564,7 @@ ui_elements.autoplay_toggle = mainTab:Toggle({
 mainTab:Divider()
 mainTab:Paragraph({
 	Title = "Instructions",
-	Desc  = "Use up scroll!\n\n4K: A S D F\n5K: Default. DF SPACE JK\n6K: S D F J K L\n7K: S D F SPACE J K L\n9K: A S D F SPACE J K L ;\n\nAutoplayer doesn't work?\n\n1. 🔴 = no work\n2. Rejoin\n3. Exploit may not support virtual input manager\n4. Contact my github or discord (at my github!)\n5. Or maybe change your note settings, possibly others to default",
+	Desc  = "Use up scroll!\n\n4K: A S D F\n5K: Default. DF SPACE JK\n6K: S D F J K L\n7K: S D F SPACE J K L\n9K: A S D F SPACE J K L ;\n\nAutoplayer doesn't work?\n\n1. Vastal might not be updated\n2. Rejoin\n3. Exploit may not support virtual input manager\n4. Contact my github or discord (at my github!)\n5. Or maybe change your note settings, possibly others to default",
 	Image = "info"
 })
 
