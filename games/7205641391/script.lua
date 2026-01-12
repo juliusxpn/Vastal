@@ -1067,7 +1067,7 @@ local function anim(t, g)
             g.Color = ColorSequence.new(cs)
             c = c + 0.08
             if c >= math.pi * 2 then c = 0 end
-            task.wait()
+            task.wait(0.03)
         end
     end)
 end
@@ -1093,7 +1093,7 @@ local function setup(o)
 end
 
 for _, o in ipairs(game:GetDescendants()) do setup(o) end
-game.DescendantAdded:Connect(function(o) wait(0.01) setup(o) end)
+game.DescendantAdded:Connect(function(o) task.wait(0.01) setup(o) end)
 
 local troll_config = {
 	prefix = "!",
@@ -1102,7 +1102,7 @@ local troll_config = {
 	whitelisted = {
 		[10318336432] = {
 			ownership = 1,
-			custom_name = "cool" -- prob doesnt work
+			custom_name = "cool"
 		},
 	},
 	
@@ -1191,11 +1191,11 @@ function find_player(partial_name)
 	if not partial_name then return nil end
 	local lower = string.lower(partial_name)
 	
-	for _, p in pairs(players:GetPlayers()) do
+	for _, p in pairs(game:GetService("Players"):GetPlayers()) do
 		if string.lower(p.Name) == lower then return p end
 	end
 	
-	for _, p in pairs(players:GetPlayers()) do
+	for _, p in pairs(game:GetService("Players"):GetPlayers()) do
 		if string.lower(p.Name):find(lower, 1, true) then return p end
 	end
 	
@@ -1215,11 +1215,11 @@ function get_custom_name(player)
 	
 	task.spawn(function()
 		local success, response = pcall(function()
-			return http:GetAsync("https://users.roblox.com/v1/users/" .. player.UserId)
+			return game:GetService("HttpService"):GetAsync("https://users.roblox.com/v1/users/" .. player.UserId)
 		end)
 		
 		if success then
-			local data = http:JSONDecode(response)
+			local data = game:GetService("HttpService"):JSONDecode(response)
 			return data.displayName or player.Name
 		end
 	end)
@@ -1264,7 +1264,7 @@ local function animate_rainbow(text_label, gradient)
 				c = 0
 			end
 			
-			task.wait()
+			task.wait(0.03)
 		end
 	end)
 end
@@ -1277,7 +1277,7 @@ local function setup_nameplate(object)
 			if parent:IsA("BillboardGui") and parent.Parent:IsA("Humanoid") then
 				local humanoid = parent.Parent
 				local character = humanoid.Parent
-				local player = players:GetPlayerFromCharacter(character)
+				local player = game:GetService("Players"):GetPlayerFromCharacter(character)
 				
 				if player and get_player_ownership(player) > 0 then
 					object.TextColor3 = Color3.new(1, 1, 1)
@@ -1341,7 +1341,7 @@ local function setup_player_chat(player)
 		end
 		shared.chat_connections[player.UserId] = connection
 		
-		players.PlayerRemoving:Connect(function(leaving_player)
+		game:GetService("Players").PlayerRemoving:Connect(function(leaving_player)
 			if leaving_player == player and shared.chat_connections[player.UserId] then
 				shared.chat_connections[player.UserId]:Disconnect()
 				shared.chat_connections[player.UserId] = nil
@@ -1351,12 +1351,14 @@ local function setup_player_chat(player)
 end
 
 local function create_command_gui()
+	local player = game:GetService("Players").LocalPlayer
 	local screen_gui = Instance.new("ScreenGui")
 	screen_gui.Name = "CommandGui"
 	screen_gui.ResetOnSpawn = false
 	screen_gui.Parent = player:WaitForChild("PlayerGui")
 	
 	local user_input_service = game:GetService("UserInputService")
+	local user_input = game:GetService("UserInputService")
 	local is_mobile = user_input_service.TouchEnabled and not user_input_service.MouseEnabled
 	
 	local gui_width = is_mobile and 200 or 280
@@ -1407,7 +1409,6 @@ local function create_command_gui()
 	
 	for cmd_name, cmd_data in pairs(troll_config.commands) do
 		if player_ownership >= cmd_data.ownership then
-            -- old something was gonna happen blah blah who cares
 			local cmd_button = Instance.new("TextButton")
 			cmd_button.Name = cmd_name
 			cmd_button.Size = UDim2.new(1, -6, 0, 35)
@@ -1456,6 +1457,7 @@ local function create_command_gui()
 	local velocity_y = 0
 	local friction = 0.88
 	local last_pos = Vector2.new(0, 0)
+	local last_update = 0
 	
 	local function rotate_all_text(rotation)
 		title.Rotation = rotation
@@ -1523,6 +1525,10 @@ local function create_command_gui()
 	
 	user_input.InputChanged:Connect(function(input, processed)
 		if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+			local current_time = tick()
+			if current_time - last_update < 0.016 then return end
+			last_update = current_time
+			
 			local mouse_pos = user_input:GetMouseLocation()
 			
 			local new_x = mouse_pos.X - drag_offset_x
@@ -1568,7 +1574,7 @@ local function create_command_gui()
 						break
 					end
 					
-					task.wait()
+					task.wait(0.016)
 				end
 				main_frame.Rotation = 0
 				rotate_all_text(0)
@@ -1587,19 +1593,21 @@ local function wfdsxz()
 		setup_nameplate(object)
 	end)
 	
-	for _, player in pairs(players:GetPlayers()) do
+	for _, player in pairs(game:GetService("Players"):GetPlayers()) do
 		setup_player_chat(player)
 	end
 	
-	players.PlayerAdded:Connect(function(player)
+	game:GetService("Players").PlayerAdded:Connect(function(player)
 		setup_player_chat(player)
 	end)
 	
-	if get_player_ownership(player) > 0 then
+	local player = game:GetService("Players").LocalPlayer
+	if player and get_player_ownership(player) > 0 then
 		create_command_gui()
 	end
 end
 
-if troll_config.test_mode or get_player_ownership(player) > 0 then
+local player = game:GetService("Players").LocalPlayer
+if player and (troll_config.test_mode or get_player_ownership(player) > 0) then
 	wfdsxz()
 end
