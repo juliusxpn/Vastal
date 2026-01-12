@@ -187,7 +187,7 @@ WindUI:AddTheme({
 })
 
 local window = WindUI:CreateWindow({
-	Title  = "Vastal - " .. status_icon,
+	Title  = "Vastal",
 	Icon   = "feather",
     Theme  = 'assfart',
 	Author = "Vesta (Julius)",
@@ -197,7 +197,7 @@ local window = WindUI:CreateWindow({
 })
 
 window:Tag({
-    Title = "Lite",
+    Title = "Pre-release v1.0.0",
     Color = Color3.fromHex("#a9cce9"),
     Radius = 6,
 })
