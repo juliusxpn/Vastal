@@ -8,7 +8,12 @@ pcall(function()
 	makefolder("vastal")
 	makefolder("vastal/mmm")
 	makefolder("vastal/mmm/cache")
+    makefolder('vastal/mmm/.ignore')
 	writefile("vastal/startup.mp3", game:HttpGet("https://github.com/juliusxpn/Vastal/raw/refs/heads/main/games/7205641391/startup.mp3"))
+end)
+
+pcall(function()
+    writefile('vastal/newico.png', game:HttpGet("https://github.com/juliusxpn/Vastal/blob/main/newico.png?raw=true"))
 end)
 
 pcall(function()
@@ -188,13 +193,54 @@ WindUI:AddTheme({
 
 local window = WindUI:CreateWindow({
 	Title  = "Vastal",
-	Icon   = "feather",
+	Icon   = getcustomasset("vastal/newico.png"),
     Theme  = 'assfart',
 	Author = "Vesta (Julius)",
 	Folder = "VestaAutoPlayer",
 	Size   = UDim2.fromOffset(600, 333),
     Radius = 4
 })
+
+local base = "https://raw.githubusercontent.com/juliusxpn/Vastal/main/games/" .. tostring(game.PlaceId) .. "/lite"
+local lite_script_url = base .. "/script.lua"
+
+local suc, body = pcall(function()
+    return game:HttpGet(lite_script_url)
+end)
+
+if suc and body then
+    if not isfile("vastal/mmm/.ignore/mmmlite") then
+        WindUI:Popup({
+            Title = "A Lite version is available!",
+            Icon = "info",
+            Content = "Do you want to use the Lite version of this script? It offers way more customizable features but probably wont stay up-to-date with the actual script.",
+            Buttons = {
+                {
+                    Title = "No",
+                    Icon = "x",
+                    Variant = "Tertiary",
+                    Callback = function() end
+                },
+                {
+                    Title = "Don't show me again.",
+                    Icon = "x",
+                    Variant = "Primary",
+                    Callback = function()
+                        writefile("vastal/mmm/.ignore/mmmlite","")
+                    end
+                },
+                {
+                    Title = "Yes",
+                    Icon = "check",
+                    Variant = "Primary",
+                    Callback = function()
+                        loadstring(body)()
+                    end
+                }
+            }
+        })
+    end
+end
 
 window:Tag({
     Title = "Pre-release v1.0.0",
