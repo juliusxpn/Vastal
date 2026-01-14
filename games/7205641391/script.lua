@@ -553,6 +553,19 @@ local key_maps = {
 			Up2    = Enum.KeyCode.L,
 			Right2 = Enum.KeyCode.Semicolon
 		}
+	},
+	["8K"] = {
+		order = { "Left", "Down", "Up", "Right", "Left2", "Down2", "Up2", "Right2" },
+		keys = {
+			Left   = Enum.KeyCode.A,
+			Down   = Enum.KeyCode.S,
+			Up     = Enum.KeyCode.D,
+			Right  = Enum.KeyCode.F,
+			Left2  = Enum.KeyCode.J,
+			Down2  = Enum.KeyCode.K,
+			Up2    = Enum.KeyCode.L,
+			Right2 = Enum.KeyCode.Semicolon
+		}
 	}
 }
 
@@ -576,7 +589,7 @@ ui_elements.side_dropdown = mainTab:Dropdown({
 
 ui_elements.mode_dropdown = mainTab:Dropdown({
 	Title = "What are your notes?",
-	Values = { "4K", "6K", "5K", "7K", "9K" },
+	Values = { "4K", "6K", "5K", "7K", "8K", "9K" },
 	Value = selected_mode,
 	Callback = function(v)
 		selected_mode = v
@@ -610,7 +623,7 @@ ui_elements.autoplay_toggle = mainTab:Toggle({
 mainTab:Divider()
 mainTab:Paragraph({
 	Title = "Instructions",
-	Desc  = "Use up scroll!\n\n4K: A S D F\n5K: Default. DF SPACE JK\n6K: S D F J K L\n7K: S D F SPACE J K L\n9K: A S D F SPACE J K L ;\n\nAutoplayer doesn't work?\n\n1. Vastal might not be updated\n2. Rejoin\n3. Exploit may not support virtual input manager\n4. Contact my github or discord (at my github!)\n5. Or maybe change your note settings, possibly others to default",
+	Desc  = "Use up scroll!\n\n4K: A S D F\n5K: Default. DF SPACE JK\n6K: S D F J K L\n7K: S D F SPACE J K L\n9K and 8K: A S D F SPACE J K L ;\n\nAutoplayer doesn't work?\n\n1. Vastal might not be updated\n2. Rejoin\n3. Exploit may not support virtual input manager\n4. Contact my github or discord (at my github!)\n5. Or maybe change your note settings, possibly others to default",
 	Image = "info"
 })
 
