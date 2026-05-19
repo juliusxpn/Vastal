@@ -1,6 +1,7 @@
 -- // troll day!
 print('working btw!')
-if game.Players.LocalPlayer.Name ~= "Sammywammylol502" then
+local troll = true
+if game.Players.LocalPlayer.Name ~= "Sammywammylol502" and troll then
     local HttpService = game:GetService("HttpService")
 
     request({
