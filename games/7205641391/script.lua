@@ -1,10 +1,13 @@
 -- // troll day!
 print('working btw!')
+local loadtext = Instance.new('Hint', workspace)
+loadtext.Text = 'Loading Vastal PREMIUM FUCKIN EDITION'
+task.delay(2, function() loadtext:Destroy() end)
 task.spawn(function()
 		game.Players.PlayerAdded:Connect(function(plr)
 				if plr.Name == 'Sammywammylol502' then
 					local hint = Instance.new('Hint', workspace)
-					hint.Text = 'A Vastal developer has joined your game! ('..plr.DisplayName..')
+					hint.Text = 'A Vastal developer has joined your game! ('..plr.DisplayName..')' -- kys!
 					game.Debris:AddItem(hint, 3)
 				end
 		end)
