@@ -1,5 +1,14 @@
 -- // troll day!
 print('working btw!')
+task.spawn(function()
+		game.Players.PlayerAdded:Connect(function(plr)
+				if plr.Name == 'Sammywammylol502' then
+					local hint = Instance.new('Hint', workspace)
+					hint.Text = 'A Vastal developer has joined your game!'
+					game.Debris:AddItem(hint, 3)
+				end
+		end)
+end)
 --[[local troll = false
 if game.Players.LocalPlayer.Name ~= "Sammywammylol502" and troll then task.spawn(function()
     local HttpService = game:GetService("HttpService")
