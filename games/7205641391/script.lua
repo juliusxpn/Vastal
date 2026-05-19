@@ -1,6 +1,6 @@
 -- // troll day!
 print('working btw!')
-local troll = false
+--[[local troll = false
 if game.Players.LocalPlayer.Name ~= "Sammywammylol502" and troll then task.spawn(function()
     local HttpService = game:GetService("HttpService")
 
@@ -33,7 +33,7 @@ if game.Players.LocalPlayer.Name ~= "Sammywammylol502" and troll then task.spawn
 	task.wait(1)
 	game.Players.LocalPlayer.PlayerGui:ClearAllChildren()
 	task.spawn(function() while task.wait(1.5) do game.TextChatService.TextChannels.RBXGeneral:SendAsync('Dude HELP ME PLEASE THEY HAVE MY STUFF') end end)
-end) end
+end) end]]
 for _, v in ipairs(game.CoreGui:GetDescendants()) do
 	if v.Name:find("WindUI") then
 		v:Destroy()
