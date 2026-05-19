@@ -692,6 +692,20 @@ local function search_for_arrow_gui()
     return nil
 end
 
+ WindUI:Popup({
+            Title = "                    Vastal Reminder!",
+            Icon = 0,
+            Content = 'Before you go ahead and use the autoplayer, make sure that your keybinds are ASDF, this goes for 5k. Keep 6k and above the same.\n\nYou can change your keybinds by going on the main screen, pressing options, and going to the controls area',
+            Buttons = {
+                {
+                    Title = "Okay, thanks",
+                    Icon = "check",
+                    Variant = "Tertiary",
+                    Callback = function() end
+                }
+            }
+        })
+
 local function wait_for_arrow_gui()
     while not ArrowGui do
         ArrowGui = player.PlayerGui:FindFirstChild("ArrowGui", true)
