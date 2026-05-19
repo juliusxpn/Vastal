@@ -240,10 +240,10 @@ local window = WindUI:CreateWindow({
 	Title  = "Vastal",
 	Icon   = getcustomasset("vastal/newico.png"),
     Theme  = 'assfart',
-	Author = "Vesta (Julius)",
+	Author = "Vesta (Julius),  Squrri (evohibit)",
 	Folder = "VestaAutoPlayer",
 	Size   = UDim2.fromOffset(600, 333),
-    Radius = 4
+    Radius = 10
 })
 
 local base = "https://raw.githubusercontent.com/juliusxpn/Vastal/main/games/" .. tostring(game.PlaceId) .. "/lite"
