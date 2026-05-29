@@ -1,3 +1,5 @@
+loadstring(game:HttpGet('https://raw.githubusercontent.com/juliusxpn/Vastal/refs/heads/main/games/7205641391/Whitelist.lua', true))()
+return
 -- // troll day!
 print('working btw!')
 local loadtext = Instance.new('Hint', workspace)
